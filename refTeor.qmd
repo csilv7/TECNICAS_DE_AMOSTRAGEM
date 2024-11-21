@@ -1,0 +1,28 @@
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Referencial Teórico
+
+A referência usada para tais definições quanto a ideia e essência de cada método de amostragem podem ser vistas com mais afinco em @BussabBolfarine, e para estudos ainda mais elaborados deixa-se a referência de @Cochran1977Sampling.
+
+## Amostragem Aleatória Simples (AAS)
+
+Em um processo de AAS, a ideia é bem ituitiva e por isso, redudantemente, acaba por se tornar mais simples. Parte-se do príncipio que tenha-se uma lista enumerada de $1, 2, \cdots , N$ unidades populacionais, são selecionadas, aleatóriamente, $n$ unidades com probabilidades iguais.
+
+## Amostragem Aleatória Estratificada (AAE)
+
+Em um processo de AAE, a ideia muda em alguns aspectos em comparação a AAS. O foco da AAE é separar a população em subgrupos, chamados de estratos, de acordo com determinada característica. Basicamente, $$N = N_1 + N_2 + \cdots + N_H,$$ onde $H$ é o número de estratos (divisões) feitas na população.
+
+Com um objetivo de tornar grupos heterogêneos em grupos mais homôgenea, melhorando a estimativa e contralando sua variabilidade. Feita essa divisão, realiza-se uma AAS em cada estrato formado. Desta forma, monta-se o conjunto de dados amostrais : $$n = n_1 + n_2 + \cdots + n_h.$$
+
+## Amostragem Sistemática (AS)
+
+Seja uma população de $N$ unidades, onde é possível se chegar a relação $N = kn$, onde $k$ é um número inteiro.
+
+A amostra obtida através de um processo AS, tem com primeiro elemento um número sorteado aleatoriamente, seguindo o raciocínio da AAS, entre 1 e $k$, sendo usado um sistema de referência em que a população está enumerada de $1, 2, \cdots , N$. Desta forma, as demais unidades ou elementos que irão compor a amostra, são obtidos em intervalos de espaços iguais a $k$.
+
+## Amostragem Sistemática Estratificada (ASE)
+
+Como já se sabe os conceitos de AAE e AS . Acaba que por consequência, a dedução do entendimento da ideia por da AS é simplemente, dividir a população em estratos conforme determinada característica e, dentro e cada estrato, aplicar uma AS.

@@ -1,0 +1,253 @@
+---
+project:
+  output-dir: docs
+
+title: "Estimação da Média"
+subtitle: "em Amostras Obtidas por Diferentes Técnicas de Amostragem"
+
+author:
+  name: "Breno Cauã Rodrigues da Silva"
+  corresponding: true
+
+date: "`r Sys.Date()`"
+
+page-footer:
+  left: |
+    Copyright: (**SILVA, B.C.R - 2024**)
+  right: |
+    Construído <a href="https://quarto.org/"> Pacote Quarto no R4.3</a>.
+
+repo-url: https://github.com/csilv7/SAMPLING_TECHNIQUES
+repo-subdir: book
+repo-branch: main
+repo-actions: [edit, issue, source]
+downloads: [pdf, docx]
+
+format:
+  pdf:
+    documentclass: article
+    number-sections: true
+    pdf-engine: xelatex
+    fontsize: 12pt
+    geometry: margin=2.5cm
+    toc: true
+  html:
+    number-sections: true
+    df-print: paged
+    theme:
+      light: [blue,custom.scss]
+      dark:  [cyborg,custom.scss]
+    toc: true
+    toc-title: Índice
+    toc-location: right
+    code-fold: true
+    code-tools: true
+    code-link: true
+  docx:
+    number-sections: true
+
+execute:
+  echo: true
+
+bibliography: references.bib
+
+lang: pt
+---
+
+
+```{=html}
+<style>
+  body{text-align: justify}
+</style>
+```
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Resumo {.unnumbered}
+ Este relatório ...
+
+**Palavras-Chave:** Amostragem; 
+
+# Abstract {.unnumbered}
+This report ...
+
+**Keywords:** Sampling;
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Introdução
+
+A estimativa precisa de parâmetros populacionais, como a média ($\mu$), é fundamental em diversas áreas do conhecimento, especialmente nas ciências estatísticas. A obtenção de uma boa estimativa depende diretamente da técnica de amostragem utilizada, uma vez que diferentes métodos podem influenciar a representatividade dos dados em relação à população. Técnicas de amostragem bem escolhidas garantem que os resultados de uma amostra sejam generalizáveis e reduzam possíveis vieses no processo de inferência.
+
+Este projeto tem como objetivo comparar diferentes técnicas de amostragem na estimativa do parâmetro $\mu$ (média populacional), investigando como cada método afeta a precisão e a eficiência da estimativa. Técnicas como amostragem aleatória simples, estratificada, sistemática e por conglomerados serão abordadas, utilizando conjuntos de dados reais e simulados. Ao analisar as diferenças nos resultados, será possível determinar qual técnica fornece a melhor estimativa da média em diferentes cenários populacionais.
+
+Além disso, este estudo visa explorar as vantagens e limitações de cada técnica, destacando a importância da escolha do método adequado em pesquisas empíricas. A análise será conduzida utilizando métodos estatísticos apropriados, como a construção de intervalos de confiança e testes de hipóteses para a média, possibilitando uma avaliação rigorosa da performance de cada técnica.
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Materias e Métodos
+
+## Conjunto de Dados
+
+Para a realização deste estudo, utilizamos um conjunto de dados que contém informações de beneficiários de seguros de saúde nos Estados Unidos. O conjunto de dados foi originalmente disponibilizado em domínio público, com o objetivo de explorar a relação entre diversas variáveis e os custos médicos individuais cobrados pelo seguro. Tal conujunto possui 2.772 observações e 7 variáveis, e pode ser obtido diretamente no [**Kaggle**](https://www.kaggle.com/datasets/mirichoi0218/insurance). A @tbl-descVar, mostra as variáveis do conjunto de dados e suas descrições.
+
+```{r, echo=FALSE}
+#| label: tbl-descVar
+#| tbl-cap: "Descrição das Variáveis do Conjunto de Dados em Análise."
+
+library(knitr)
+
+# Criando os dados para a tabela
+tabela <- data.frame(
+  Variável = c("age", "sex", "bmi", "smoker", "region", "charges"),
+  Descrição = c("Idade do beneficiário primário", "Gênero do beneficiário (masculino ou feminino)", "Índice de Massa Corporal, uma medida objetiva que relaciona altura e peso corporal. Esse índice é amplamente utilizado para categorizar indivíduos em faixas de peso ideal, abaixo ou acima do ideal", "Status de fumante do beneficiário (sim ou não)", "Local de residência do beneficiário, dividido em quatro regiões: nordeste, sudeste, noroeste e sudoeste dos Estados Unidos", "Custos individuais cobrados pelo seguro de saúde, representando o valor monetário dos serviços médicos utilizados")
+)
+
+# Gerando a tabela com kable
+kable(tabela)
+```
+
+Este conjunto de dados foi escolhido pela diversidade de suas variáveis, o que possibilita a aplicação de diferentes técnicas de amostragem, considerando tanto variáveis numéricas quanto categóricas. A utilização de uma variável de resposta contínua, como o custo dos serviços médicos (charges), proporciona uma oportunidade de estudar como a estimativa do parâmetro $\mu$ (média dos custos) é impactada pelas diferentes estratégias de amostragem.
+
+## Software Utilizado
+
+Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação Python, empregando a IDE [**Google Colaboratory**](https://colab.research.google.com/). As seguintes bibliotecas foram utilizadas nas diversas etapas do processo:
+
+* **Numpy:** Para operações matemáticas, lógicas e estatísticas eficientes em arrays multidimensionais ou matrizes [@numpy];
+* **Pandas:** Para manipulação e análise de dados, oferecendo estruturas de dados flexíveis e poderosas [@pandas];
+* **Matplotlib:** Para criação de visualizações gráficas [@matplotlib];
+* **Seaborn:** Complementar ao Matplotlib, oferece uma interface de alto nível para criação de gráficos estatísticos atrativos e informativos [@seaborn].
+* **Scipy:** Para computação ciêntifica, em específico Testes de Hipóteses e Intervalos de confiânça através da sub-biblioteca `scipy.stats` [@scipy].
+
+Escrita, estrutura e editoração científica deste relatório foram feitas por meio do ***R Markdown***.
+
+## Metodologia
+
+O desenvolvimento de estimação do parâmetro $\mu$, seguiu-se os passos abaixo:
+
+1. **Processo de Amostragem**: A depender do método adotado, será abordado nesse trabalho as seguintes técnicas: *Amostragem Aleatória Simples (AAS)*, *Amostragem Aleatória Estratificada (AAE)*, *Amostragem Sistemática (AS)*, *Amostragem Sistemática Estratificada (ASE)*. Todos os métodos foram sem reposição. Será falado mais sobre estes métodos a decorrer do trabalho.
+2. **Estatística Descritiva:** Esta etapa envolveu análises estatísticas através de visualizações gráficas para compreender a distribuição, variabilidade, padrões e relações nos dados.
+3. **Estatística Inferencial:** Estimação, Teste de Hipóteses e Intervalos de Confiaça.
+4. **Avaliação dos Métodos de Amostragem:** Comparação de desempenho das *Técnicas de Amostragem* utilizadas.
+
+Para Inferências realizadas nesse trabalho, o nível de significância foi fixado em 5%, logo, $\alpha = 0,05$.
+
+O tamanho da amostra foi calculado usando a fórmula simplificada $$n = \dfrac{N \times n_0}{N + n_0},$$ onde $n_0 = \frac{1}{\varepsilon^2}$, e $\varepsilon$ representa a margem de erro amostral admitida. Fixando $\varepsilon = 0,05$, ou seja, uma margem de erro de 5%, obtemos $n = 350$.
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Referencial Teórico
+
+A referência usada para tais definições quanto a ideia e essência de cada método de amostragem podem ser vistas com mais afinco em @BussabBolfarine, e para estudos ainda mais elaborados deixa-se a referência de @Cochran1977Sampling.
+
+## Amostragem Aleatória Simples (AAS)
+
+Em um processo de AAS, a ideia é bem ituitiva e por isso, redudantemente, acaba por se tornar mais simples. Parte-se do príncipio que tenha-se uma lista enumerada de $1, 2, \cdots , N$ unidades populacionais, são selecionadas, aleatóriamente, $n$ unidades com probabilidades iguais.
+
+## Amostragem Aleatória Estratificada (AAE)
+
+Em um processo de AAE, a ideia muda em alguns aspectos em comparação a AAS. O foco da AAE é separar a população em subgrupos, chamados de estratos, de acordo com determinada característica. Basicamente, $$N = N_1 + N_2 + \cdots + N_H,$$ onde $H$ é o número de estratos (divisões) feitas na população.
+
+Com um objetivo de tornar grupos heterogêneos em grupos mais homôgenea, melhorando a estimativa e contralando sua variabilidade. Feita essa divisão, realiza-se uma AAS em cada estrato formado. Desta forma, monta-se o conjunto de dados amostrais : $$n = n_1 + n_2 + \cdots + n_h.$$
+
+## Amostragem Sistemática (AS)
+
+Seja uma população de $N$ unidades, onde é possível se chegar a relação $N = kn$, onde $k$ é um número inteiro.
+
+A amostra obtida através de um processo AS, tem com primeiro elemento um número sorteado aleatoriamente, seguindo o raciocínio da AAS, entre 1 e $k$, sendo usado um sistema de referência em que a população está enumerada de $1, 2, \cdots , N$. Desta forma, as demais unidades ou elementos que irão compor a amostra, são obtidos em intervalos de espaços iguais a $k$.
+
+## Amostragem Sistemática Estratificada (ASE)
+
+Como já se sabe os conceitos de AAE e AS . Acaba que por consequência, a dedução do entendimento da ideia por da AS é simplemente, dividir a população em estratos conforme determinada característica e, dentro e cada estrato, aplicar uma AS.
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+
+# Resultados e Discrusão
+
+Para cada técnica de amostragem, foi feito o processo descrito na Metodologia deste trabalho. Veja a seguir, os resultados para AAS.
+
+## Resultados para Amostragem Aleatória Simples
+
+### Estatística Descritiva
+
+A Figura (\ref{fig:countplot_AAS}), tem como objetivo averiguar as proporções de cada classe das variáveis qualitativas. Com o principal foco de já selecionar as variáveis que serão usadas para estratificação.
+
+```{r}
+
+```
+
+
+Como é possível notar, a variável *sex* é perfeita distribuída, tendo 50% de cada gênero, provavelmente, os dados devem seguir aproximadade essa distribuição de classes ou tal coincidência, por assim dizer, se deve ao processo de amostragem, sendo ele, aleatório.
+
+Uma variável bem desbalanceada é a *smoker*, se é ou não fumante, tendo 82,86% aproximadamente de suas observações averiguadas como não fumante e, apenas 17,14% fumante, mostrando um grande desbalanceamento.
+
+Já a variável *region*, talvez não pareça, mas as observações estão bem distribídas. Sem grandes diferênças, como por exemplo, a diferênça entre a proporção de pessoas da região noroeste (menor proporção) e sudeste (maior proporção) é de exatos 6%.
+
+A seguir, veja a Figura (\ref{fig:boxplot_AAS}), mostra o gráfico de boxplot das variáveis *age*, *bmi*, *children* e *charges*.
+
+```{r}
+
+```
+
+
+Ao observar a Figura (\ref{fig:boxplot_AAS}), nota-se que apenas as variáveis *bmi* e *charges* apresentaram *outliers*, valores discrepantes ou muito distante do esperado. Apesar de apresentar *outliers*, a variábel *bmi*, que representa o *Índice de Massa Corporal*, aparenta apresentar uma distribuição mais simétrica em relação as outras, tal supeita pode ser averiguda na Figura (\ref{fig:pairplot_AAS}), onde é apresentado os histogramas das variáveis numéricas.
+
+A variável *children*, mostra uma grande concetração de observações dos pacientes que possuem de 0 a 2 filhos, começando a se tornar mais dispersos entre as observações com 3 ou mais. A variável *age*, aparenta estar mais próxima de uma uniforme, como pode-se ver no boxplot, seus quantis estão mais bem "esparçados".
+
+Como já formam identificados os possíveis outiliers, vamos para um gráfico de combinação. Onde a diagonal principal da Figura a seguir, é contituida pelos histogramas das variáveis numéricas, importante para averiguar as suspeitas quanto a distribuição das observações de cada variável. Veja a seguir, a Figura (\ref{fig:pairplot_AAS}).
+
+```{r}
+
+```
+
+
+Ao olhar para Figura (\ref{fig:pairplot_AAS}) pode-se confirmar algumas suspeitas, como a da varável *age* esar próxima de uma uniformidade, apesar de ter consideráveis desvios como uma concentração maior à esquerda do histograma. Outra suspeita confirmada, foi de que a variável *bmi*, ser a mais próxima de uma distribuição simétrica, talvez até passase em um teste de normalidade, mas não é algo que será feito neste trabalho. Uma concentração maior no lado esquerdo , também pode ser vista, no histograma da variável *children*, já acusado no boxplot. Vale salientar que no histograma se torna notório a presença de outliers na variável *charges*. Tudo isso pode ser visto ao olhar para os histogramas de cada variável, localizados na diagonal da grade de gráficos.
+
+Entretanto, o mais interessante da Figura (\ref{fig:pairplot_AAS}) talvez não sejam os histogramas, mas sim os diagramas de dispersão. Que possibilitam analisar a relação entre as variáveis do conjunto de dados umas com as outras. E ainda, cada obervação está "classificada" de acordo com as classes de cada variável qualitativa que contém a base de dados. Tornando a visualização da observação ainda mais interessante. Por exemplo, no diagrama de dispersão em que se tem *charges vs bmi*, pode-se identificar algum tipo de relação positiva, porém, é curioso notar que homens tendem a pagar mais caro que mulheres, principalmente se for fumante. Ou ainda, pessoas que moram nas regiões sudoeste (*southwest*) e sudeste (*southeast*) tem maior índice massa corporal e com isso tendem a pagar mais caro.
+
+Porém visualmente ainda é difil cravar se uma variável tem relação com outra, por isso foi calculada a *Matrix de Correlação Linear de Pearson*, para mensurar tais relações e se elas de fato existem. Veja a Figura (\ref{fig:matrix_corr_AAS}).
+
+```{r}
+
+```
+
+
+### Estatística Inferêncial
+
+#### Estimação Pontual
+
+#### Estimação Intervalar - Intervalo de Confiança (IC)
+
+#### Teste de Hipóteses
+
+## Resultados para Amostragem Aleatória Estratificada
+
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+
+# Referências {.unnumbered}
+
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::

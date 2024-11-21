@@ -1,0 +1,12 @@
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Introdução
+
+A estimativa precisa de parâmetros populacionais, como a média ($\mu$), é fundamental em diversas áreas do conhecimento, especialmente nas ciências estatísticas. A obtenção de uma boa estimativa depende diretamente da técnica de amostragem utilizada, uma vez que diferentes métodos podem influenciar a representatividade dos dados em relação à população. Técnicas de amostragem bem escolhidas garantem que os resultados de uma amostra sejam generalizáveis e reduzam possíveis vieses no processo de inferência.
+
+Este projeto tem como objetivo comparar diferentes técnicas de amostragem na estimativa do parâmetro $\mu$ (média populacional), investigando como cada método afeta a precisão e a eficiência da estimativa. Técnicas como amostragem aleatória simples, estratificada, sistemática e por conglomerados serão abordadas, utilizando conjuntos de dados reais e simulados. Ao analisar as diferenças nos resultados, será possível determinar qual técnica fornece a melhor estimativa da média em diferentes cenários populacionais.
+
+Além disso, este estudo visa explorar as vantagens e limitações de cada técnica, destacando a importância da escolha do método adequado em pesquisas empíricas. A análise será conduzida utilizando métodos estatísticos apropriados, como a construção de intervalos de confiança e testes de hipóteses para a média, possibilitando uma avaliação rigorosa da performance de cada técnica.

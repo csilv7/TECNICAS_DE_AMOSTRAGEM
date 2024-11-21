@@ -1,0 +1,41 @@
+\usepackage{fancyhdr} % Personalização de cabeçalhos e rodapés.
+\setlength{\headheight}{13.59999pt} % Define a altura do cabeçalho.
+\usepackage[utf8]{inputenc} % Codificação UTF-8 para caracteres especiais.
+\usepackage{graphicx} % Inclusão de gráficos e imagens.
+\usepackage{latexsym,amssymb,amsmath,amsfonts} % Símbolos e fontes da AMS para matemática.
+\usepackage{indentfirst} % Indenta o primeiro parágrafo de cada seção.
+\usepackage{url} % Formatação correta de URLs.
+\usepackage{enumerate} % Personalização de listas enumeradas.
+\usepackage[ocgcolorlinks]{hyperref} % Links clicáveis com cores que não afetam a impressão.
+
+\usepackage{caption} % Permite um melhor controle sobre as legendas
+\usepackage{longtable} % Certifique-se de que o pacote longtable está incluído
+
+\usepackage{float} % Para definir novos ambientes flutuantes.
+
+% Configurações de estilo para cabeçalhos e rodapés
+\pagestyle{fancy}
+\setcounter{page}{1}
+\renewcommand{\thefootnote}{\dagger}
+
+% Cabeçalho
+\lhead{\nouppercase{\leftmark}}  % Exibe a seção atual à esquerda
+\chead{}  % Deixe o centro do cabeçalho vazio
+\rhead{\thepage}  % Coloca o número da página no lado direito do cabeçalho
+
+% Rodapé
+\lfoot{\small SILVA, B. C. R.}  % Texto do lado esquerdo do rodapé
+\cfoot{}  % Deixe o centro do rodapé vazio
+\rfoot{\small Técnicas de Amostragem}  % Texto do lado direito do rodapé
+\renewcommand{\footrulewidth}{0.4pt} % Adiciona uma linha horizontal no rodapé
+
+\counterwithin{table}{section}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+
+% Definir novo ambiente "quadro" como um ambiente flutuante do tipo figura
+\newfloat{quadro}{H}{qlo} % 'qlo' é uma extensão de lista de quadros
+\floatname{quadro}{Quadro} % Define o nome do novo ambiente como "Quadro"
+
+\captionsetup[quadro]{labelformat=default, labelsep=colon} % Formato da legenda para o ambiente "quadro"
+\counterwithin{quadro}{section} % Numeração dos quadros por seção

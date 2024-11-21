@@ -1,0 +1,53 @@
+::: progress
+::: {.progress-bar style="width: 100%;"}
+:::
+:::
+
+# Materias e Métodos
+
+## Conjunto de Dados
+
+Para a realização deste estudo, utilizamos um conjunto de dados que contém informações de beneficiários de seguros de saúde nos Estados Unidos. O conjunto de dados foi originalmente disponibilizado em domínio público, com o objetivo de explorar a relação entre diversas variáveis e os custos médicos individuais cobrados pelo seguro. Tal conujunto possui 2.772 observações e 7 variáveis, e pode ser obtido diretamente no [**Kaggle**](https://www.kaggle.com/datasets/mirichoi0218/insurance). A @tbl-descVar, mostra as variáveis do conjunto de dados e suas descrições.
+
+```{r, echo=FALSE}
+#| label: tbl-descVar
+#| tbl-cap: "Descrição das Variáveis do Conjunto de Dados em Análise."
+
+library(knitr)
+
+# Criando os dados para a tabela
+tabela <- data.frame(
+  Variável = c("age", "sex", "bmi", "smoker", "region", "charges"),
+  Descrição = c("Idade do beneficiário primário", "Gênero do beneficiário (masculino ou feminino)", "Índice de Massa Corporal, uma medida objetiva que relaciona altura e peso corporal. Esse índice é amplamente utilizado para categorizar indivíduos em faixas de peso ideal, abaixo ou acima do ideal", "Status de fumante do beneficiário (sim ou não)", "Local de residência do beneficiário, dividido em quatro regiões: nordeste, sudeste, noroeste e sudoeste dos Estados Unidos", "Custos individuais cobrados pelo seguro de saúde, representando o valor monetário dos serviços médicos utilizados")
+)
+
+# Gerando a tabela com kable
+kable(tabela)
+```
+
+Este conjunto de dados foi escolhido pela diversidade de suas variáveis, o que possibilita a aplicação de diferentes técnicas de amostragem, considerando tanto variáveis numéricas quanto categóricas. A utilização de uma variável de resposta contínua, como o custo dos serviços médicos (charges), proporciona uma oportunidade de estudar como a estimativa do parâmetro $\mu$ (média dos custos) é impactada pelas diferentes estratégias de amostragem.
+
+## Software Utilizado
+
+Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação Python, empregando a IDE [**Google Colaboratory**](https://colab.research.google.com/). As seguintes bibliotecas foram utilizadas nas diversas etapas do processo:
+
+* **Numpy:** Para operações matemáticas, lógicas e estatísticas eficientes em arrays multidimensionais ou matrizes [@numpy];
+* **Pandas:** Para manipulação e análise de dados, oferecendo estruturas de dados flexíveis e poderosas [@pandas];
+* **Matplotlib:** Para criação de visualizações gráficas [@matplotlib];
+* **Seaborn:** Complementar ao Matplotlib, oferece uma interface de alto nível para criação de gráficos estatísticos atrativos e informativos [@seaborn].
+* **Scipy:** Para computação ciêntifica, em específico Testes de Hipóteses e Intervalos de confiânça através da sub-biblioteca `scipy.stats` [@scipy].
+
+Escrita, estrutura e editoração científica deste relatório foram feitas por meio do ***R Markdown***.
+
+## Metodologia
+
+O desenvolvimento de estimação do parâmetro $\mu$, seguiu-se os passos abaixo:
+
+1. **Processo de Amostragem**: A depender do método adotado, será abordado nesse trabalho as seguintes técnicas: *Amostragem Aleatória Simples (AAS)*, *Amostragem Aleatória Estratificada (AAE)*, *Amostragem Sistemática (AS)*, *Amostragem Sistemática Estratificada (ASE)*. Todos os métodos foram sem reposição. Será falado mais sobre estes métodos a decorrer do trabalho.
+2. **Estatística Descritiva:** Esta etapa envolveu análises estatísticas através de visualizações gráficas para compreender a distribuição, variabilidade, padrões e relações nos dados.
+3. **Estatística Inferencial:** Estimação, Teste de Hipóteses e Intervalos de Confiaça.
+4. **Avaliação dos Métodos de Amostragem:** Comparação de desempenho das *Técnicas de Amostragem* utilizadas.
+
+Para Inferências realizadas nesse trabalho, o nível de significância foi fixado em 5%, logo, $\alpha = 0,05$.
+
+O tamanho da amostra foi calculado usando a fórmula simplificada $$n = \dfrac{N \times n_0}{N + n_0},$$ onde $n_0 = \frac{1}{\varepsilon^2}$, e $\varepsilon$ representa a margem de erro amostral admitida. Fixando $\varepsilon = 0,05$, ou seja, uma margem de erro de 5%, obtemos $n = 350$.
