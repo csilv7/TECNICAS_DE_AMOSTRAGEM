@@ -90,6 +90,15 @@ div.csl-indent {
 <link href="index_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="index_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="index_files/libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="index_files/libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+<script src="index_files/libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+<script src="index_files/libs/plotly-binding-4.10.4/plotly.js"></script>
+<script src="index_files/libs/typedarray-0.1/typedarray.min.js"></script>
+<script src="index_files/libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="index_files/libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet">
+<script src="index_files/libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="index_files/libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet">
+<script src="index_files/libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
 <link href="index_files/libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="index_files/libs/pagedtable-1.1/js/pagedtable.js"></script>
 
@@ -166,7 +175,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Estimação da Média</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Código</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Estimação da Média</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
 <p class="subtitle lead">em Amostras Obtidas por Diferentes Técnicas de Amostragem</p>
 </div>
 
@@ -290,15 +299,8 @@ Tabela&nbsp;1: Descrição das Variáveis do Conjunto de Dados em Análise.
 </section>
 <section id="software-utilizado" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="software-utilizado"><span class="header-section-number">2.2</span> Software Utilizado</h2>
-<p>Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação Python, empregando a IDE <a href="https://colab.research.google.com/"><strong>Google Colaboratory</strong></a>. As seguintes bibliotecas foram utilizadas nas diversas etapas do processo:</p>
-<ul>
-<li><strong>Numpy:</strong> Para operações matemáticas, lógicas e estatísticas eficientes em arrays multidimensionais ou matrizes <span class="citation" data-cites="numpy">(<a href="#ref-numpy" role="doc-biblioref">Harris et al. 2020</a>)</span>;</li>
-<li><strong>Pandas:</strong> Para manipulação e análise de dados, oferecendo estruturas de dados flexíveis e poderosas <span class="citation" data-cites="pandas">(<a href="#ref-pandas" role="doc-biblioref">McKinney 2010</a>)</span>;</li>
-<li><strong>Matplotlib:</strong> Para criação de visualizações gráficas <span class="citation" data-cites="matplotlib">(<a href="#ref-matplotlib" role="doc-biblioref">Hunter 2007</a>)</span>;</li>
-<li><strong>Seaborn:</strong> Complementar ao Matplotlib, oferece uma interface de alto nível para criação de gráficos estatísticos atrativos e informativos <span class="citation" data-cites="seaborn">(<a href="#ref-seaborn" role="doc-biblioref">Waskom 2021</a>)</span>.</li>
-<li><strong>Scipy:</strong> Para computação ciêntifica, em específico Testes de Hipóteses e Intervalos de confiânça através da sub-biblioteca <code>scipy.stats</code> <span class="citation" data-cites="scipy">(<a href="#ref-scipy" role="doc-biblioref">Virtanen et al. 2020</a>)</span>.</li>
-</ul>
-<p>Escrita, estrutura e editoração científica deste relatório foram feitas por meio do <strong><em>R Markdown</em></strong>.</p>
+<p>Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação <em>R</em>, empregando a IDE <a href="https://posit.co/download/rstudio-desktop/"><em>RStudio</em></a>. Os seguintes pacotes foram utilizadas nas diversas etapas do processo:</p>
+<p>Escrita, estrutura e editoração científica deste relatório foram feitas por meio do <a href="https://quarto.org/"><strong><em>Pacote Quarto</em></strong></a>.</p>
 </section>
 <section id="metodologia" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="metodologia"><span class="header-section-number">2.3</span> Metodologia</h2>
@@ -311,6 +313,34 @@ Tabela&nbsp;1: Descrição das Variáveis do Conjunto de Dados em Análise.
 </ol>
 <p>Para Inferências realizadas nesse trabalho, o nível de significância foi fixado em 5%, logo, <span class="math inline">\(\alpha = 0,05\)</span>.</p>
 <p>O tamanho da amostra foi calculado usando a fórmula simplificada <span class="math display">\[n = \dfrac{N \times n_0}{N + n_0},\]</span> onde <span class="math inline">\(n_0 = \frac{1}{\varepsilon^2}\)</span>, e <span class="math inline">\(\varepsilon\)</span> representa a margem de erro amostral admitida. Fixando <span class="math inline">\(\varepsilon = 0,05\)</span>, ou seja, uma margem de erro de 5%, obtemos <span class="math inline">\(n = 350\)</span>.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo caminho</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"Dataset/population.xlsx"</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo a base de dados</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(path)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Margem de Erro adotada</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimensão da Populção</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(population)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Amostra Inicial</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>n_zero <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> (alpha <span class="sc">**</span> <span class="dv">2</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Amostra Final</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">ceiling</span>((N <span class="sc">*</span> n_zero) <span class="sc">/</span> (N <span class="sc">+</span> n_zero))</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo semente para reprodutibilidade</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <div class="progress">
 <div class="progress-bar" style="width: 100%;">
 
@@ -350,9 +380,34 @@ Tabela&nbsp;1: Descrição das Variáveis do Conjunto de Dados em Análise.
 <p>Para cada técnica de amostragem, foi feito o processo descrito na Metodologia deste trabalho. Veja a seguir, os resultados para AAS.</p>
 <section id="resultados-para-amostragem-aleatória-simples" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="resultados-para-amostragem-aleatória-simples"><span class="header-section-number">4.1</span> Resultados para Amostragem Aleatória Simples</h2>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> population[ids, ]</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
 <section id="estatística-descritiva" class="level3" data-number="4.1.1">
 <h3 data-number="4.1.1" class="anchored" data-anchor-id="estatística-descritiva"><span class="header-section-number">4.1.1</span> Estatística Descritiva</h3>
 <p>A Figura (<span class="math inline">\(\ref{fig:countplot_AAS}\)</span>), tem como objetivo averiguar as proporções de cada classe das variáveis qualitativas. Com o principal foco de já selecionar as variáveis que serão usadas para estratificação.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Código</summary>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>diagDirper <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(sample, <span class="fu">aes</span>(<span class="at">x =</span> bmi, <span class="at">y =</span> charges),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">geom_point</span>(<span class="at">col =</span> <span class="st">"red"</span>, <span class="at">fill =</span> <span class="st">"black"</span>), <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>),</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                     <span class="fu">theme_classic</span>())</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplotly</span>(diagDirper)</span></code><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="plotly html-widget html-fill-item" id="htmlwidget-12b90b5143946df06a9e" style="width:100%;height:464px;"></div>
+<script type="application/json" data-for="htmlwidget-12b90b5143946df06a9e">{"x":{"data":[{"visible":false,"showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.228310502283104,"r":7.3059360730593621,"b":40.182648401826491,"l":54.794520547945211},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[14.101500000000001,54.988500000000002],"tickmode":"array","ticktext":["20","30","40","50"],"tickvals":[20,30,40,50],"categoryorder":"array","categoryarray":["20","30","40","50"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"y","title":{"text":"bmi","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-2010.558,66902.858000000007],"tickmode":"array","ticktext":["0","20000","40000","60000"],"tickvals":[0,20000,40000,60000],"categoryorder":"array","categoryarray":["0","20000","40000","60000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176002,"zeroline":false,"anchor":"x","title":{"text":"charges","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"107a1b6174c3":{"x":{},"y":{},"type":"scatter"}},"cur_data":"107a1b6174c3","visdat":{"107a1b6174c3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
 <p>Como é possível notar, a variável <em>sex</em> é perfeita distribuída, tendo 50% de cada gênero, provavelmente, os dados devem seguir aproximadade essa distribuição de classes ou tal coincidência, por assim dizer, se deve ao processo de amostragem, sendo ele, aleatório.</p>
 <p>Uma variável bem desbalanceada é a <em>smoker</em>, se é ou não fumante, tendo 82,86% aproximadamente de suas observações averiguadas como não fumante e, apenas 17,14% fumante, mostrando um grande desbalanceamento.</p>
 <p>Já a variável <em>region</em>, talvez não pareça, mas as observações estão bem distribídas. Sem grandes diferênças, como por exemplo, a diferênça entre a proporção de pessoas da região noroeste (menor proporção) e sudeste (maior proporção) é de exatos 6%.</p>
@@ -404,21 +459,6 @@ Bussab, W de O, e Heleno BOLFARINE. 2005. <span>«Elementos de amostragem»</spa
 </div>
 <div id="ref-Cochran1977Sampling" class="csl-entry" role="listitem">
 Cochran, William G. 1977. <span>«Sampling techniques»</span>. <em>John Wiley&amp; Sons</em>.
-</div>
-<div id="ref-numpy" class="csl-entry" role="listitem">
-Harris, Charles R., K. Jarrod Millman, Stéfan J. van der Walt, Ralf Gommers, Pauli Virtanen, David Cournapeau, Eric Wieser, et al. 2020. <span>«Array programming with <span>NumPy</span>»</span>. <em>Nature</em> 585 (7825): 357–62. <a href="https://doi.org/10.1038/s41586-020-2649-2">https://doi.org/10.1038/s41586-020-2649-2</a>.
-</div>
-<div id="ref-matplotlib" class="csl-entry" role="listitem">
-Hunter, J. D. 2007. <span>«Matplotlib: A 2D graphics environment»</span>. <em>Computing in Science &amp; Engineering</em> 9 (3): 90–95. <a href="https://doi.org/10.1109/MCSE.2007.55">https://doi.org/10.1109/MCSE.2007.55</a>.
-</div>
-<div id="ref-pandas" class="csl-entry" role="listitem">
-McKinney, Wes. 2010. <span>«<span>D</span>ata <span>S</span>tructures for <span>S</span>tatistical <span>C</span>omputing in <span>P</span>ython»</span>. Em <em><span>P</span>roceedings of the 9th <span>P</span>ython in <span>S</span>cience <span>C</span>onference</em>, editado por Stéfan van der Walt e Jarrod Millman, 56–61. <a href="https://doi.org/ 10.25080/Majora-92bf1922-00a ">https://doi.org/ 10.25080/Majora-92bf1922-00a </a>.
-</div>
-<div id="ref-scipy" class="csl-entry" role="listitem">
-Virtanen, Pauli, Ralf Gommers, Travis E. Oliphant, Matt Haberland, Tyler Reddy, David Cournapeau, Evgeni Burovski, et al. 2020. <span>«<span><span>SciPy</span> 1.0: Fundamental Algorithms for Scientific Computing in Python</span>»</span>. <em>Nature Methods</em> 17: 261–72. <a href="https://doi.org/10.1038/s41592-019-0686-2">https://doi.org/10.1038/s41592-019-0686-2</a>.
-</div>
-<div id="ref-seaborn" class="csl-entry" role="listitem">
-Waskom, Michael L. 2021. <span>«seaborn: statistical data visualization»</span>. <em>Journal of Open Source Software</em> 6 (60): 3021. <a href="https://doi.org/10.21105/joss.03021">https://doi.org/10.21105/joss.03021</a>.
 </div>
 </div></section></div></main>
 <!-- /main column -->
@@ -1037,255 +1077,284 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">project:</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">  output-dir: docs</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Estimação da Média"</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "em Amostras Obtidas por Diferentes Técnicas de Amostragem"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">  name: "Breno Cauã Rodrigues da Silva"</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">  corresponding: true</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">page-footer:</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">  left: |</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Copyright: (**SILVA, B.C.R - 2024**)</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">  right: |</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Construído &lt;a href="https://quarto.org/"&gt; Pacote Quarto no R4.3&lt;/a&gt;.</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="an">repo-url:</span><span class="co"> https://github.com/csilv7/SAMPLING_TECHNIQUES</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="an">repo-subdir:</span><span class="co"> book</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="an">repo-branch:</span><span class="co"> main</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="an">repo-actions:</span><span class="co"> [edit, issue, source]</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="an">downloads:</span><span class="co"> [pdf, docx]</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">    documentclass: article</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf-engine: xelatex</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">    fontsize: 12pt</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">    geometry: margin=2.5cm</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">    theme:</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">      light: [blue,custom.scss]</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">      dark:  [cyborg,custom.scss]</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Índice</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">  docx:</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="in">  body{text-align: justify}</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resumo {.unnumbered}</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a> Este relatório ...</span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>**Palavras-Chave:** Amostragem; </span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="fu"># Abstract {.unnumbered}</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>This report ...</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>**Keywords:** Sampling;</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>A estimativa precisa de parâmetros populacionais, como a média ($\mu$), é fundamental em diversas áreas do conhecimento, especialmente nas ciências estatísticas. A obtenção de uma boa estimativa depende diretamente da técnica de amostragem utilizada, uma vez que diferentes métodos podem influenciar a representatividade dos dados em relação à população. Técnicas de amostragem bem escolhidas garantem que os resultados de uma amostra sejam generalizáveis e reduzam possíveis vieses no processo de inferência.</span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>Este projeto tem como objetivo comparar diferentes técnicas de amostragem na estimativa do parâmetro $\mu$ (média populacional), investigando como cada método afeta a precisão e a eficiência da estimativa. Técnicas como amostragem aleatória simples, estratificada, sistemática e por conglomerados serão abordadas, utilizando conjuntos de dados reais e simulados. Ao analisar as diferenças nos resultados, será possível determinar qual técnica fornece a melhor estimativa da média em diferentes cenários populacionais.</span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>Além disso, este estudo visa explorar as vantagens e limitações de cada técnica, destacando a importância da escolha do método adequado em pesquisas empíricas. A análise será conduzida utilizando métodos estatísticos apropriados, como a construção de intervalos de confiança e testes de hipóteses para a média, possibilitando uma avaliação rigorosa da performance de cada técnica.</span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="fu"># Materias e Métodos</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conjunto de Dados</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>Para a realização deste estudo, utilizamos um conjunto de dados que contém informações de beneficiários de seguros de saúde nos Estados Unidos. O conjunto de dados foi originalmente disponibilizado em domínio público, com o objetivo de explorar a relação entre diversas variáveis e os custos médicos individuais cobrados pelo seguro. Tal conujunto possui 2.772 observações e 7 variáveis, e pode ser obtido diretamente no <span class="co">[</span><span class="ot">**Kaggle**</span><span class="co">](https://www.kaggle.com/datasets/mirichoi0218/insurance)</span>. A @tbl-descVar, mostra as variáveis do conjunto de dados e suas descrições.</span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-descVar</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Descrição das Variáveis do Conjunto de Dados em Análise."</span></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a><span class="in">library(knitr)</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a><span class="in"># Criando os dados para a tabela</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a><span class="in">tabela &lt;- data.frame(</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a><span class="in">  Variável = c("age", "sex", "bmi", "smoker", "region", "charges"),</span></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a><span class="in">  Descrição = c("Idade do beneficiário primário", "Gênero do beneficiário (masculino ou feminino)", "Índice de Massa Corporal, uma medida objetiva que relaciona altura e peso corporal. Esse índice é amplamente utilizado para categorizar indivíduos em faixas de peso ideal, abaixo ou acima do ideal", "Status de fumante do beneficiário (sim ou não)", "Local de residência do beneficiário, dividido em quatro regiões: nordeste, sudeste, noroeste e sudoeste dos Estados Unidos", "Custos individuais cobrados pelo seguro de saúde, representando o valor monetário dos serviços médicos utilizados")</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a><span class="in"># Gerando a tabela com kable</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a><span class="in">kable(tabela)</span></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>Este conjunto de dados foi escolhido pela diversidade de suas variáveis, o que possibilita a aplicação de diferentes técnicas de amostragem, considerando tanto variáveis numéricas quanto categóricas. A utilização de uma variável de resposta contínua, como o custo dos serviços médicos (charges), proporciona uma oportunidade de estudar como a estimativa do parâmetro $\mu$ (média dos custos) é impactada pelas diferentes estratégias de amostragem.</span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software Utilizado</span></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação Python, empregando a IDE <span class="co">[</span><span class="ot">**Google Colaboratory**</span><span class="co">](https://colab.research.google.com/)</span>. As seguintes bibliotecas foram utilizadas nas diversas etapas do processo:</span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Numpy:** Para operações matemáticas, lógicas e estatísticas eficientes em arrays multidimensionais ou matrizes <span class="co">[</span><span class="ot">@numpy</span><span class="co">]</span>;</span>
-<span id="cb1-126"><a href="#cb1-126" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Pandas:** Para manipulação e análise de dados, oferecendo estruturas de dados flexíveis e poderosas <span class="co">[</span><span class="ot">@pandas</span><span class="co">]</span>;</span>
-<span id="cb1-127"><a href="#cb1-127" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Matplotlib:** Para criação de visualizações gráficas <span class="co">[</span><span class="ot">@matplotlib</span><span class="co">]</span>;</span>
-<span id="cb1-128"><a href="#cb1-128" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Seaborn:** Complementar ao Matplotlib, oferece uma interface de alto nível para criação de gráficos estatísticos atrativos e informativos <span class="co">[</span><span class="ot">@seaborn</span><span class="co">]</span>.</span>
-<span id="cb1-129"><a href="#cb1-129" aria-hidden="true" tabindex="-1"></a><span class="ss">* </span>**Scipy:** Para computação ciêntifica, em específico Testes de Hipóteses e Intervalos de confiânça através da sub-biblioteca <span class="in">`scipy.stats`</span> <span class="co">[</span><span class="ot">@scipy</span><span class="co">]</span>.</span>
-<span id="cb1-130"><a href="#cb1-130" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-131"><a href="#cb1-131" aria-hidden="true" tabindex="-1"></a>Escrita, estrutura e editoração científica deste relatório foram feitas por meio do ***R Markdown***.</span>
-<span id="cb1-132"><a href="#cb1-132" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-133"><a href="#cb1-133" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metodologia</span></span>
-<span id="cb1-134"><a href="#cb1-134" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-135"><a href="#cb1-135" aria-hidden="true" tabindex="-1"></a>O desenvolvimento de estimação do parâmetro $\mu$, seguiu-se os passos abaixo:</span>
-<span id="cb1-136"><a href="#cb1-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-137"><a href="#cb1-137" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Processo de Amostragem**: A depender do método adotado, será abordado nesse trabalho as seguintes técnicas: *Amostragem Aleatória Simples (AAS)*, *Amostragem Aleatória Estratificada (AAE)*, *Amostragem Sistemática (AS)*, *Amostragem Sistemática Estratificada (ASE)*. Todos os métodos foram sem reposição. Será falado mais sobre estes métodos a decorrer do trabalho.</span>
-<span id="cb1-138"><a href="#cb1-138" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Estatística Descritiva:** Esta etapa envolveu análises estatísticas através de visualizações gráficas para compreender a distribuição, variabilidade, padrões e relações nos dados.</span>
-<span id="cb1-139"><a href="#cb1-139" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Estatística Inferencial:** Estimação, Teste de Hipóteses e Intervalos de Confiaça.</span>
-<span id="cb1-140"><a href="#cb1-140" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Avaliação dos Métodos de Amostragem:** Comparação de desempenho das *Técnicas de Amostragem* utilizadas.</span>
-<span id="cb1-141"><a href="#cb1-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-142"><a href="#cb1-142" aria-hidden="true" tabindex="-1"></a>Para Inferências realizadas nesse trabalho, o nível de significância foi fixado em 5%, logo, $\alpha = 0,05$.</span>
-<span id="cb1-143"><a href="#cb1-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-144"><a href="#cb1-144" aria-hidden="true" tabindex="-1"></a>O tamanho da amostra foi calculado usando a fórmula simplificada $$n = \dfrac{N \times n_0}{N + n_0},$$ onde $n_0 = \frac{1}{\varepsilon^2}$, e $\varepsilon$ representa a margem de erro amostral admitida. Fixando $\varepsilon = 0,05$, ou seja, uma margem de erro de 5%, obtemos $n = 350$.</span>
-<span id="cb1-145"><a href="#cb1-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-146"><a href="#cb1-146" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-147"><a href="#cb1-147" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-148"><a href="#cb1-148" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-149"><a href="#cb1-149" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-150"><a href="#cb1-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-151"><a href="#cb1-151" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencial Teórico</span></span>
-<span id="cb1-152"><a href="#cb1-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-153"><a href="#cb1-153" aria-hidden="true" tabindex="-1"></a>A referência usada para tais definições quanto a ideia e essência de cada método de amostragem podem ser vistas com mais afinco em @BussabBolfarine, e para estudos ainda mais elaborados deixa-se a referência de @Cochran1977Sampling.</span>
-<span id="cb1-154"><a href="#cb1-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-155"><a href="#cb1-155" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Aleatória Simples (AAS)</span></span>
-<span id="cb1-156"><a href="#cb1-156" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-157"><a href="#cb1-157" aria-hidden="true" tabindex="-1"></a>Em um processo de AAS, a ideia é bem ituitiva e por isso, redudantemente, acaba por se tornar mais simples. Parte-se do príncipio que tenha-se uma lista enumerada de $1, 2, \cdots , N$ unidades populacionais, são selecionadas, aleatóriamente, $n$ unidades com probabilidades iguais.</span>
-<span id="cb1-158"><a href="#cb1-158" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-159"><a href="#cb1-159" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Aleatória Estratificada (AAE)</span></span>
-<span id="cb1-160"><a href="#cb1-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-161"><a href="#cb1-161" aria-hidden="true" tabindex="-1"></a>Em um processo de AAE, a ideia muda em alguns aspectos em comparação a AAS. O foco da AAE é separar a população em subgrupos, chamados de estratos, de acordo com determinada característica. Basicamente, $$N = N_1 + N_2 + \cdots + N_H,$$ onde $H$ é o número de estratos (divisões) feitas na população.</span>
-<span id="cb1-162"><a href="#cb1-162" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-163"><a href="#cb1-163" aria-hidden="true" tabindex="-1"></a>Com um objetivo de tornar grupos heterogêneos em grupos mais homôgenea, melhorando a estimativa e contralando sua variabilidade. Feita essa divisão, realiza-se uma AAS em cada estrato formado. Desta forma, monta-se o conjunto de dados amostrais : $$n = n_1 + n_2 + \cdots + n_h.$$</span>
-<span id="cb1-164"><a href="#cb1-164" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-165"><a href="#cb1-165" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Sistemática (AS)</span></span>
-<span id="cb1-166"><a href="#cb1-166" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-167"><a href="#cb1-167" aria-hidden="true" tabindex="-1"></a>Seja uma população de $N$ unidades, onde é possível se chegar a relação $N = kn$, onde $k$ é um número inteiro.</span>
-<span id="cb1-168"><a href="#cb1-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-169"><a href="#cb1-169" aria-hidden="true" tabindex="-1"></a>A amostra obtida através de um processo AS, tem com primeiro elemento um número sorteado aleatoriamente, seguindo o raciocínio da AAS, entre 1 e $k$, sendo usado um sistema de referência em que a população está enumerada de $1, 2, \cdots , N$. Desta forma, as demais unidades ou elementos que irão compor a amostra, são obtidos em intervalos de espaços iguais a $k$.</span>
-<span id="cb1-170"><a href="#cb1-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-171"><a href="#cb1-171" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Sistemática Estratificada (ASE)</span></span>
-<span id="cb1-172"><a href="#cb1-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-173"><a href="#cb1-173" aria-hidden="true" tabindex="-1"></a>Como já se sabe os conceitos de AAE e AS . Acaba que por consequência, a dedução do entendimento da ideia por da AS é simplemente, dividir a população em estratos conforme determinada característica e, dentro e cada estrato, aplicar uma AS.</span>
-<span id="cb1-174"><a href="#cb1-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-175"><a href="#cb1-175" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-176"><a href="#cb1-176" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-177"><a href="#cb1-177" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-178"><a href="#cb1-178" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-179"><a href="#cb1-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-180"><a href="#cb1-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-181"><a href="#cb1-181" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados e Discrusão</span></span>
-<span id="cb1-182"><a href="#cb1-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-183"><a href="#cb1-183" aria-hidden="true" tabindex="-1"></a>Para cada técnica de amostragem, foi feito o processo descrito na Metodologia deste trabalho. Veja a seguir, os resultados para AAS.</span>
-<span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados para Amostragem Aleatória Simples</span></span>
-<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estatística Descritiva</span></span>
-<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>A Figura (\ref{fig:countplot_AAS}), tem como objetivo averiguar as proporções de cada classe das variáveis qualitativas. Com o principal foco de já selecionar as variáveis que serão usadas para estratificação.</span>
-<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>Como é possível notar, a variável *sex* é perfeita distribuída, tendo 50% de cada gênero, provavelmente, os dados devem seguir aproximadade essa distribuição de classes ou tal coincidência, por assim dizer, se deve ao processo de amostragem, sendo ele, aleatório.</span>
-<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>Uma variável bem desbalanceada é a *smoker*, se é ou não fumante, tendo 82,86% aproximadamente de suas observações averiguadas como não fumante e, apenas 17,14% fumante, mostrando um grande desbalanceamento.</span>
-<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a>Já a variável *region*, talvez não pareça, mas as observações estão bem distribídas. Sem grandes diferênças, como por exemplo, a diferênça entre a proporção de pessoas da região noroeste (menor proporção) e sudeste (maior proporção) é de exatos 6%.</span>
-<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a>A seguir, veja a Figura (\ref{fig:boxplot_AAS}), mostra o gráfico de boxplot das variáveis *age*, *bmi*, *children* e *charges*.</span>
-<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>Ao observar a Figura (\ref{fig:boxplot_AAS}), nota-se que apenas as variáveis *bmi* e *charges* apresentaram *outliers*, valores discrepantes ou muito distante do esperado. Apesar de apresentar *outliers*, a variábel *bmi*, que representa o *Índice de Massa Corporal*, aparenta apresentar uma distribuição mais simétrica em relação as outras, tal supeita pode ser averiguda na Figura (\ref{fig:pairplot_AAS}), onde é apresentado os histogramas das variáveis numéricas.</span>
-<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a>A variável *children*, mostra uma grande concetração de observações dos pacientes que possuem de 0 a 2 filhos, começando a se tornar mais dispersos entre as observações com 3 ou mais. A variável *age*, aparenta estar mais próxima de uma uniforme, como pode-se ver no boxplot, seus quantis estão mais bem "esparçados".</span>
-<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>Como já formam identificados os possíveis outiliers, vamos para um gráfico de combinação. Onde a diagonal principal da Figura a seguir, é contituida pelos histogramas das variáveis numéricas, importante para averiguar as suspeitas quanto a distribuição das observações de cada variável. Veja a seguir, a Figura (\ref{fig:pairplot_AAS}).</span>
-<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>Ao olhar para Figura (\ref{fig:pairplot_AAS}) pode-se confirmar algumas suspeitas, como a da varável *age* esar próxima de uma uniformidade, apesar de ter consideráveis desvios como uma concentração maior à esquerda do histograma. Outra suspeita confirmada, foi de que a variável *bmi*, ser a mais próxima de uma distribuição simétrica, talvez até passase em um teste de normalidade, mas não é algo que será feito neste trabalho. Uma concentração maior no lado esquerdo , também pode ser vista, no histograma da variável *children*, já acusado no boxplot. Vale salientar que no histograma se torna notório a presença de outliers na variável *charges*. Tudo isso pode ser visto ao olhar para os histogramas de cada variável, localizados na diagonal da grade de gráficos.</span>
-<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>Entretanto, o mais interessante da Figura (\ref{fig:pairplot_AAS}) talvez não sejam os histogramas, mas sim os diagramas de dispersão. Que possibilitam analisar a relação entre as variáveis do conjunto de dados umas com as outras. E ainda, cada obervação está "classificada" de acordo com as classes de cada variável qualitativa que contém a base de dados. Tornando a visualização da observação ainda mais interessante. Por exemplo, no diagrama de dispersão em que se tem *charges vs bmi*, pode-se identificar algum tipo de relação positiva, porém, é curioso notar que homens tendem a pagar mais caro que mulheres, principalmente se for fumante. Ou ainda, pessoas que moram nas regiões sudoeste (*southwest*) e sudeste (*southeast*) tem maior índice massa corporal e com isso tendem a pagar mais caro.</span>
-<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>Porém visualmente ainda é difil cravar se uma variável tem relação com outra, por isso foi calculada a *Matrix de Correlação Linear de Pearson*, para mensurar tais relações e se elas de fato existem. Veja a Figura (\ref{fig:matrix_corr_AAS}).</span>
-<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estatística Inferêncial</span></span>
-<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estimação Pontual</span></span>
-<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estimação Intervalar - Intervalo de Confiança (IC)</span></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Teste de Hipóteses</span></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados para Amostragem Aleatória Estratificada</span></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referências {.unnumbered}</span></span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>::: progress</span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>:::</span>
+<div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="an">project:</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">  output-dir: docs</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Estimação da Média"</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "em Amostras Obtidas por Diferentes Técnicas de Amostragem"</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">  name: "Breno Cauã Rodrigues da Silva"</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">  corresponding: true</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="an">page-footer:</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">  left: |</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="co">    Copyright: (**SILVA, B.C.R - 2024**)</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="co">  right: |</span></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">    Construído &lt;a href="https://quarto.org/"&gt; Pacote Quarto no R4.3&lt;/a&gt;.</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="an">repo-url:</span><span class="co"> https://github.com/csilv7/SAMPLING_TECHNIQUES</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="an">repo-subdir:</span><span class="co"> book</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="an">repo-branch:</span><span class="co"> main</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="an">repo-actions:</span><span class="co"> [edit, issue, source]</span></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="an">downloads:</span><span class="co"> [pdf, docx]</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="co">  pdf:</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co">    documentclass: article</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="co">    pdf-engine: xelatex</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="co">    fontsize: 12pt</span></span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="co">    geometry: margin=1.5cm</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="co">    df-print: paged</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co">    theme:</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co">      light: [blue,custom.scss]</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">      dark:  [cyborg,custom.scss]</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-title: Índice</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-location: right</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">    code-link: true</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">  docx:</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: true</span></span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="an">bibliography:</span><span class="co"> references.bib</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="an">lang:</span><span class="co"> pt</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="in">```{=html}</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;style&gt;</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="in">  body{text-align: justify}</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="in">&lt;/style&gt;</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resumo {.unnumbered}</span></span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a>Este relatório ...</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a>**Palavras-Chave:** Amostragem;</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="fu"># Abstract {.unnumbered}</span></span>
+<span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>This report ...</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a>**Keywords:** Sampling;</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a>A estimativa precisa de parâmetros populacionais, como a média ($\mu$), é fundamental em diversas áreas do conhecimento, especialmente nas ciências estatísticas. A obtenção de uma boa estimativa depende diretamente da técnica de amostragem utilizada, uma vez que diferentes métodos podem influenciar a representatividade dos dados em relação à população. Técnicas de amostragem bem escolhidas garantem que os resultados de uma amostra sejam generalizáveis e reduzam possíveis vieses no processo de inferência.</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a>Este projeto tem como objetivo comparar diferentes técnicas de amostragem na estimativa do parâmetro $\mu$ (média populacional), investigando como cada método afeta a precisão e a eficiência da estimativa. Técnicas como amostragem aleatória simples, estratificada, sistemática e por conglomerados serão abordadas, utilizando conjuntos de dados reais e simulados. Ao analisar as diferenças nos resultados, será possível determinar qual técnica fornece a melhor estimativa da média em diferentes cenários populacionais.</span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>Além disso, este estudo visa explorar as vantagens e limitações de cada técnica, destacando a importância da escolha do método adequado em pesquisas empíricas. A análise será conduzida utilizando métodos estatísticos apropriados, como a construção de intervalos de confiança e testes de hipóteses para a média, possibilitando uma avaliação rigorosa da performance de cada técnica.</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="fu"># Materias e Métodos</span></span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conjunto de Dados</span></span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a>Para a realização deste estudo, utilizamos um conjunto de dados que contém informações de beneficiários de seguros de saúde nos Estados Unidos. O conjunto de dados foi originalmente disponibilizado em domínio público, com o objetivo de explorar a relação entre diversas variáveis e os custos médicos individuais cobrados pelo seguro. Tal conujunto possui 2.772 observações e 7 variáveis, e pode ser obtido diretamente no <span class="co">[</span><span class="ot">**Kaggle**</span><span class="co">](https://www.kaggle.com/datasets/mirichoi0218/insurance)</span>. A @tbl-descVar, mostra as variáveis do conjunto de dados e suas descrições.</span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="in">#| label: tbl-descVar</span></span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="in">#| tbl-cap: "Descrição das Variáveis do Conjunto de Dados em Análise."</span></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a><span class="in">library(knitr)</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a><span class="in"># Criando os dados para a tabela</span></span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a><span class="in">tabela &lt;- data.frame(</span></span>
+<span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a><span class="in">  Variável = c("age", "sex", "bmi", "smoker", "region", "charges"),</span></span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="in">  Descrição = c("Idade do beneficiário primário", "Gênero do beneficiário (masculino ou feminino)", "Índice de Massa Corporal, uma medida objetiva que relaciona altura e peso corporal. Esse índice é amplamente utilizado para categorizar indivíduos em faixas de peso ideal, abaixo ou acima do ideal", "Status de fumante do beneficiário (sim ou não)", "Local de residência do beneficiário, dividido em quatro regiões: nordeste, sudeste, noroeste e sudoeste dos Estados Unidos", "Custos individuais cobrados pelo seguro de saúde, representando o valor monetário dos serviços médicos utilizados")</span></span>
+<span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a><span class="in"># Gerando a tabela com kable</span></span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a><span class="in">kable(tabela)</span></span>
+<span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>Este conjunto de dados foi escolhido pela diversidade de suas variáveis, o que possibilita a aplicação de diferentes técnicas de amostragem, considerando tanto variáveis numéricas quanto categóricas. A utilização de uma variável de resposta contínua, como o custo dos serviços médicos (charges), proporciona uma oportunidade de estudar como a estimativa do parâmetro $\mu$ (média dos custos) é impactada pelas diferentes estratégias de amostragem.</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a><span class="fu">## Software Utilizado</span></span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a>Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação *R*, empregando a IDE [*RStudio*](https://posit.co/download/rstudio-desktop/). Os seguintes pacotes foram utilizadas nas diversas etapas do processo:</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>Escrita, estrutura e editoração científica deste relatório foram feitas por meio do <span class="co">[</span><span class="ot">***Pacote Quarto***</span><span class="co">](https://quarto.org/)</span>.</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a><span class="fu">## Metodologia</span></span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a>O desenvolvimento de estimação do parâmetro $\mu$, seguiu-se os passos abaixo:</span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ss">1.  </span>**Processo de Amostragem**: A depender do método adotado, será abordado nesse trabalho as seguintes técnicas: *Amostragem Aleatória Simples (AAS)*, *Amostragem Aleatória Estratificada (AAE)*, *Amostragem Sistemática (AS)*, *Amostragem Sistemática Estratificada (ASE)*. Todos os métodos foram sem reposição. Será falado mais sobre estes métodos a decorrer do trabalho.</span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="ss">2.  </span>**Estatística Descritiva:** Esta etapa envolveu análises estatísticas através de visualizações gráficas para compreender a distribuição, variabilidade, padrões e relações nos dados.</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a><span class="ss">3.  </span>**Estatística Inferencial:** Estimação, Teste de Hipóteses e Intervalos de Confiaça.</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="ss">4.  </span>**Avaliação dos Métodos de Amostragem:** Comparação de desempenho das *Técnicas de Amostragem* utilizadas.</span>
+<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>Para Inferências realizadas nesse trabalho, o nível de significância foi fixado em 5%, logo, $\alpha = 0,05$.</span>
+<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>O tamanho da amostra foi calculado usando a fórmula simplificada $$n = \dfrac{N \times n_0}{N + n_0},$$ onde $n_0 = \frac{1}{\varepsilon^2}$, e $\varepsilon$ representa a margem de erro amostral admitida. Fixando $\varepsilon = 0,05$, ou seja, uma margem de erro de 5%, obtemos $n = 350$.</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregando o pacote</span></span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo caminho</span></span>
+<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>path <span class="ot">&lt;-</span> <span class="st">"Dataset/population.xlsx"</span></span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a><span class="co"># Lendo a base de dados</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>population <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(path)</span>
+<span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a><span class="co"># Margem de Erro adotada</span></span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a><span class="co"># Dimensão da Populção</span></span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="fu">nrow</span>(population)</span>
+<span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a><span class="co"># Amostra Inicial</span></span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>n_zero <span class="ot">=</span> <span class="dv">1</span> <span class="sc">/</span> (alpha <span class="sc">**</span> <span class="dv">2</span>)</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a><span class="co"># Amostra Final</span></span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">ceiling</span>((N <span class="sc">*</span> n_zero) <span class="sc">/</span> (N <span class="sc">+</span> n_zero))</span>
+<span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a><span class="co"># Definindo semente para reprodutibilidade</span></span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referencial Teórico</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a>A referência usada para tais definições quanto a ideia e essência de cada método de amostragem podem ser vistas com mais afinco em @BussabBolfarine, e para estudos ainda mais elaborados deixa-se a referência de @Cochran1977Sampling.</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Aleatória Simples (AAS)</span></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>Em um processo de AAS, a ideia é bem ituitiva e por isso, redudantemente, acaba por se tornar mais simples. Parte-se do príncipio que tenha-se uma lista enumerada de $1, 2, \cdots , N$ unidades populacionais, são selecionadas, aleatóriamente, $n$ unidades com probabilidades iguais.</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Aleatória Estratificada (AAE)</span></span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>Em um processo de AAE, a ideia muda em alguns aspectos em comparação a AAS. O foco da AAE é separar a população em subgrupos, chamados de estratos, de acordo com determinada característica. Basicamente, $$N = N_1 + N_2 + \cdots + N_H,$$ onde $H$ é o número de estratos (divisões) feitas na população.</span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>Com um objetivo de tornar grupos heterogêneos em grupos mais homôgenea, melhorando a estimativa e contralando sua variabilidade. Feita essa divisão, realiza-se uma AAS em cada estrato formado. Desta forma, monta-se o conjunto de dados amostrais : $$n = n_1 + n_2 + \cdots + n_h.$$</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Sistemática (AS)</span></span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>Seja uma população de $N$ unidades, onde é possível se chegar a relação $N = kn$, onde $k$ é um número inteiro.</span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>A amostra obtida através de um processo AS, tem com primeiro elemento um número sorteado aleatoriamente, seguindo o raciocínio da AAS, entre 1 e $k$, sendo usado um sistema de referência em que a população está enumerada de $1, 2, \cdots , N$. Desta forma, as demais unidades ou elementos que irão compor a amostra, são obtidos em intervalos de espaços iguais a $k$.</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a><span class="fu">## Amostragem Sistemática Estratificada (ASE)</span></span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>Como já se sabe os conceitos de AAE e AS . Acaba que por consequência, a dedução do entendimento da ideia por da AS é simplemente, dividir a população em estratos conforme determinada característica e, dentro e cada estrato, aplicar uma AS.</span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados e Discrusão</span></span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>Para cada técnica de amostragem, foi feito o processo descrito na Metodologia deste trabalho. Veja a seguir, os resultados para AAS.</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados para Amostragem Aleatória Simples</span></span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>N)</span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>sample <span class="ot">&lt;-</span> population[ids, ]</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estatística Descritiva</span></span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>A Figura (\ref{fig:countplot_AAS}), tem como objetivo averiguar as proporções de cada classe das variáveis qualitativas. Com o principal foco de já selecionar as variáveis que serão usadas para estratificação.</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, message=FALSE, warning=FALSE}</span></span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a><span class="in">library(ggplot2)</span></span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a><span class="in">library(plotly)</span></span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a><span class="in">diagDirper &lt;- ggplot(sample, aes(x = bmi, y = charges),</span></span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a><span class="in">                     geom_point(col = "red", fill = "black"), geom_smooth(method = "lm"),</span></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="in">                     theme_classic())</span></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a><span class="in">ggplotly(diagDirper)</span></span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>Como é possível notar, a variável *sex* é perfeita distribuída, tendo 50% de cada gênero, provavelmente, os dados devem seguir aproximadade essa distribuição de classes ou tal coincidência, por assim dizer, se deve ao processo de amostragem, sendo ele, aleatório.</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a>Uma variável bem desbalanceada é a *smoker*, se é ou não fumante, tendo 82,86% aproximadamente de suas observações averiguadas como não fumante e, apenas 17,14% fumante, mostrando um grande desbalanceamento.</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a>Já a variável *region*, talvez não pareça, mas as observações estão bem distribídas. Sem grandes diferênças, como por exemplo, a diferênça entre a proporção de pessoas da região noroeste (menor proporção) e sudeste (maior proporção) é de exatos 6%.</span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>A seguir, veja a Figura (\ref{fig:boxplot_AAS}), mostra o gráfico de boxplot das variáveis *age*, *bmi*, *children* e *charges*.</span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a>Ao observar a Figura (\ref{fig:boxplot_AAS}), nota-se que apenas as variáveis *bmi* e *charges* apresentaram *outliers*, valores discrepantes ou muito distante do esperado. Apesar de apresentar *outliers*, a variábel *bmi*, que representa o *Índice de Massa Corporal*, aparenta apresentar uma distribuição mais simétrica em relação as outras, tal supeita pode ser averiguda na Figura (\ref{fig:pairplot_AAS}), onde é apresentado os histogramas das variáveis numéricas.</span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>A variável *children*, mostra uma grande concetração de observações dos pacientes que possuem de 0 a 2 filhos, começando a se tornar mais dispersos entre as observações com 3 ou mais. A variável *age*, aparenta estar mais próxima de uma uniforme, como pode-se ver no boxplot, seus quantis estão mais bem "esparçados".</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>Como já formam identificados os possíveis outiliers, vamos para um gráfico de combinação. Onde a diagonal principal da Figura a seguir, é contituida pelos histogramas das variáveis numéricas, importante para averiguar as suspeitas quanto a distribuição das observações de cada variável. Veja a seguir, a Figura (\ref{fig:pairplot_AAS}).</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a>Ao olhar para Figura (\ref{fig:pairplot_AAS}) pode-se confirmar algumas suspeitas, como a da varável *age* esar próxima de uma uniformidade, apesar de ter consideráveis desvios como uma concentração maior à esquerda do histograma. Outra suspeita confirmada, foi de que a variável *bmi*, ser a mais próxima de uma distribuição simétrica, talvez até passase em um teste de normalidade, mas não é algo que será feito neste trabalho. Uma concentração maior no lado esquerdo , também pode ser vista, no histograma da variável *children*, já acusado no boxplot. Vale salientar que no histograma se torna notório a presença de outliers na variável *charges*. Tudo isso pode ser visto ao olhar para os histogramas de cada variável, localizados na diagonal da grade de gráficos.</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a>Entretanto, o mais interessante da Figura (\ref{fig:pairplot_AAS}) talvez não sejam os histogramas, mas sim os diagramas de dispersão. Que possibilitam analisar a relação entre as variáveis do conjunto de dados umas com as outras. E ainda, cada obervação está "classificada" de acordo com as classes de cada variável qualitativa que contém a base de dados. Tornando a visualização da observação ainda mais interessante. Por exemplo, no diagrama de dispersão em que se tem *charges vs bmi*, pode-se identificar algum tipo de relação positiva, porém, é curioso notar que homens tendem a pagar mais caro que mulheres, principalmente se for fumante. Ou ainda, pessoas que moram nas regiões sudoeste (*southwest*) e sudeste (*southeast*) tem maior índice massa corporal e com isso tendem a pagar mais caro.</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a>Porém visualmente ainda é difil cravar se uma variável tem relação com outra, por isso foi calculada a *Matrix de Correlação Linear de Pearson*, para mensurar tais relações e se elas de fato existem. Veja a Figura (\ref{fig:matrix_corr_AAS}).</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a><span class="fu">### Estatística Inferêncial</span></span>
+<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estimação Pontual</span></span>
+<span id="cb4-271"><a href="#cb4-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-272"><a href="#cb4-272" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Estimação Intervalar - Intervalo de Confiança (IC)</span></span>
+<span id="cb4-273"><a href="#cb4-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-274"><a href="#cb4-274" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Teste de Hipóteses</span></span>
+<span id="cb4-275"><a href="#cb4-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-276"><a href="#cb4-276" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resultados para Amostragem Aleatória Estratificada</span></span>
+<span id="cb4-277"><a href="#cb4-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-278"><a href="#cb4-278" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-279"><a href="#cb4-279" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-280"><a href="#cb4-280" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-281"><a href="#cb4-281" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-282"><a href="#cb4-282" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-283"><a href="#cb4-283" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referências {.unnumbered}</span></span>
+<span id="cb4-284"><a href="#cb4-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-285"><a href="#cb4-285" aria-hidden="true" tabindex="-1"></a>::: progress</span>
+<span id="cb4-286"><a href="#cb4-286" aria-hidden="true" tabindex="-1"></a>::: {.progress-bar style="width: 100%;"}</span>
+<span id="cb4-287"><a href="#cb4-287" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-288"><a href="#cb4-288" aria-hidden="true" tabindex="-1"></a>:::</span>
 </code><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

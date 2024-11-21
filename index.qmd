@@ -29,7 +29,7 @@ format:
     number-sections: true
     pdf-engine: xelatex
     fontsize: 12pt
-    geometry: margin=2.5cm
+    geometry: margin=1.5cm
     toc: true
   html:
     number-sections: true
@@ -54,24 +54,24 @@ bibliography: references.bib
 lang: pt
 ---
 
-
 ```{=html}
 <style>
   body{text-align: justify}
 </style>
 ```
-
 ::: progress
 ::: {.progress-bar style="width: 100%;"}
 :::
 :::
 
 # Resumo {.unnumbered}
- Este relatório ...
 
-**Palavras-Chave:** Amostragem; 
+Este relatório ...
+
+**Palavras-Chave:** Amostragem;
 
 # Abstract {.unnumbered}
+
 This report ...
 
 **Keywords:** Sampling;
@@ -120,28 +120,50 @@ Este conjunto de dados foi escolhido pela diversidade de suas variáveis, o que 
 
 ## Software Utilizado
 
-Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação Python, empregando a IDE [**Google Colaboratory**](https://colab.research.google.com/). As seguintes bibliotecas foram utilizadas nas diversas etapas do processo:
+Para conduzir as análises e estimativas neste estudo, foi utilizada a linguagem de programação *R*, empregando a IDE [*RStudio*](https://posit.co/download/rstudio-desktop/). Os seguintes pacotes foram utilizadas nas diversas etapas do processo:
 
-* **Numpy:** Para operações matemáticas, lógicas e estatísticas eficientes em arrays multidimensionais ou matrizes [@numpy];
-* **Pandas:** Para manipulação e análise de dados, oferecendo estruturas de dados flexíveis e poderosas [@pandas];
-* **Matplotlib:** Para criação de visualizações gráficas [@matplotlib];
-* **Seaborn:** Complementar ao Matplotlib, oferece uma interface de alto nível para criação de gráficos estatísticos atrativos e informativos [@seaborn].
-* **Scipy:** Para computação ciêntifica, em específico Testes de Hipóteses e Intervalos de confiânça através da sub-biblioteca `scipy.stats` [@scipy].
-
-Escrita, estrutura e editoração científica deste relatório foram feitas por meio do ***R Markdown***.
+Escrita, estrutura e editoração científica deste relatório foram feitas por meio do [***Pacote Quarto***](https://quarto.org/).
 
 ## Metodologia
 
 O desenvolvimento de estimação do parâmetro $\mu$, seguiu-se os passos abaixo:
 
-1. **Processo de Amostragem**: A depender do método adotado, será abordado nesse trabalho as seguintes técnicas: *Amostragem Aleatória Simples (AAS)*, *Amostragem Aleatória Estratificada (AAE)*, *Amostragem Sistemática (AS)*, *Amostragem Sistemática Estratificada (ASE)*. Todos os métodos foram sem reposição. Será falado mais sobre estes métodos a decorrer do trabalho.
-2. **Estatística Descritiva:** Esta etapa envolveu análises estatísticas através de visualizações gráficas para compreender a distribuição, variabilidade, padrões e relações nos dados.
-3. **Estatística Inferencial:** Estimação, Teste de Hipóteses e Intervalos de Confiaça.
-4. **Avaliação dos Métodos de Amostragem:** Comparação de desempenho das *Técnicas de Amostragem* utilizadas.
+1.  **Processo de Amostragem**: A depender do método adotado, será abordado nesse trabalho as seguintes técnicas: *Amostragem Aleatória Simples (AAS)*, *Amostragem Aleatória Estratificada (AAE)*, *Amostragem Sistemática (AS)*, *Amostragem Sistemática Estratificada (ASE)*. Todos os métodos foram sem reposição. Será falado mais sobre estes métodos a decorrer do trabalho.
+2.  **Estatística Descritiva:** Esta etapa envolveu análises estatísticas através de visualizações gráficas para compreender a distribuição, variabilidade, padrões e relações nos dados.
+3.  **Estatística Inferencial:** Estimação, Teste de Hipóteses e Intervalos de Confiaça.
+4.  **Avaliação dos Métodos de Amostragem:** Comparação de desempenho das *Técnicas de Amostragem* utilizadas.
 
 Para Inferências realizadas nesse trabalho, o nível de significância foi fixado em 5%, logo, $\alpha = 0,05$.
 
 O tamanho da amostra foi calculado usando a fórmula simplificada $$n = \dfrac{N \times n_0}{N + n_0},$$ onde $n_0 = \frac{1}{\varepsilon^2}$, e $\varepsilon$ representa a margem de erro amostral admitida. Fixando $\varepsilon = 0,05$, ou seja, uma margem de erro de 5%, obtemos $n = 350$.
+
+```{r}
+#| echo: true
+  
+# Carregando o pacote
+library(readxl)
+
+# Definindo caminho
+path <- "Dataset/population.xlsx"
+
+# Lendo a base de dados
+population <- read_excel(path)
+
+# Margem de Erro adotada
+alpha <- 0.05
+
+# Dimensão da Populção
+N <- nrow(population)
+
+# Amostra Inicial
+n_zero = 1 / (alpha ** 2)
+
+# Amostra Final
+n <- ceiling((N * n_zero) / (N + n_zero))
+
+# Definindo semente para reprodutibilidade
+set.seed(123)
+```
 
 ::: progress
 ::: {.progress-bar style="width: 100%;"}
@@ -177,21 +199,32 @@ Como já se sabe os conceitos de AAE e AS . Acaba que por consequência, a dedu�
 :::
 :::
 
-
 # Resultados e Discrusão
 
 Para cada técnica de amostragem, foi feito o processo descrito na Metodologia deste trabalho. Veja a seguir, os resultados para AAS.
 
 ## Resultados para Amostragem Aleatória Simples
 
+```{r}
+ids <- sample(1:N)
+
+sample <- population[ids, ]
+```
+
 ### Estatística Descritiva
 
 A Figura (\ref{fig:countplot_AAS}), tem como objetivo averiguar as proporções de cada classe das variáveis qualitativas. Com o principal foco de já selecionar as variáveis que serão usadas para estratificação.
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+library(ggplot2)
+library(plotly)
 
+diagDirper <- ggplot(sample, aes(x = bmi, y = charges),
+                     geom_point(col = "red", fill = "black"), geom_smooth(method = "lm"),
+                     theme_classic())
+
+ggplotly(diagDirper)
 ```
-
 
 Como é possível notar, a variável *sex* é perfeita distribuída, tendo 50% de cada gênero, provavelmente, os dados devem seguir aproximadade essa distribuição de classes ou tal coincidência, por assim dizer, se deve ao processo de amostragem, sendo ele, aleatório.
 
@@ -205,7 +238,6 @@ A seguir, veja a Figura (\ref{fig:boxplot_AAS}), mostra o gráfico de boxplot da
 
 ```
 
-
 Ao observar a Figura (\ref{fig:boxplot_AAS}), nota-se que apenas as variáveis *bmi* e *charges* apresentaram *outliers*, valores discrepantes ou muito distante do esperado. Apesar de apresentar *outliers*, a variábel *bmi*, que representa o *Índice de Massa Corporal*, aparenta apresentar uma distribuição mais simétrica em relação as outras, tal supeita pode ser averiguda na Figura (\ref{fig:pairplot_AAS}), onde é apresentado os histogramas das variáveis numéricas.
 
 A variável *children*, mostra uma grande concetração de observações dos pacientes que possuem de 0 a 2 filhos, começando a se tornar mais dispersos entre as observações com 3 ou mais. A variável *age*, aparenta estar mais próxima de uma uniforme, como pode-se ver no boxplot, seus quantis estão mais bem "esparçados".
@@ -215,7 +247,6 @@ Como já formam identificados os possíveis outiliers, vamos para um gráfico de
 ```{r}
 
 ```
-
 
 Ao olhar para Figura (\ref{fig:pairplot_AAS}) pode-se confirmar algumas suspeitas, como a da varável *age* esar próxima de uma uniformidade, apesar de ter consideráveis desvios como uma concentração maior à esquerda do histograma. Outra suspeita confirmada, foi de que a variável *bmi*, ser a mais próxima de uma distribuição simétrica, talvez até passase em um teste de normalidade, mas não é algo que será feito neste trabalho. Uma concentração maior no lado esquerdo , também pode ser vista, no histograma da variável *children*, já acusado no boxplot. Vale salientar que no histograma se torna notório a presença de outliers na variável *charges*. Tudo isso pode ser visto ao olhar para os histogramas de cada variável, localizados na diagonal da grade de gráficos.
 
@@ -227,7 +258,6 @@ Porém visualmente ainda é difil cravar se uma variável tem relação com outr
 
 ```
 
-
 ### Estatística Inferêncial
 
 #### Estimação Pontual
@@ -238,12 +268,10 @@ Porém visualmente ainda é difil cravar se uma variável tem relação com outr
 
 ## Resultados para Amostragem Aleatória Estratificada
 
-
 ::: progress
 ::: {.progress-bar style="width: 100%;"}
 :::
 :::
-
 
 # Referências {.unnumbered}
 
